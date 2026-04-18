@@ -18,13 +18,17 @@ from services.university_sources import university_sources_service
 
 
 async def _init_ai():
-    """Initialize the K2 service at startup."""
+    """Initialize the primary and fallback AI services at startup."""
     try:
         await k2_service.start()
         if k2_service.ready:
             log.info("K2 service ready")
         else:
             log.warning("K2 service not ready. Set K2_API_KEY in backend/.env.")
+        if k2_service.gemini_fallback_ready:
+            log.info("Gemini fallback ready")
+        else:
+            log.info("Gemini fallback not configured")
     except Exception as e:
         log.error(f"K2 init failed: {e}")
 
@@ -80,4 +84,5 @@ def health():
     return {
         "status": "ok",
         "k2_ready": k2_service.ready,
+        "gemini_fallback_ready": k2_service.gemini_fallback_ready,
     }

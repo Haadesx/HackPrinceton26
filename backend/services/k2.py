@@ -16,6 +16,13 @@ from typing import Any
 
 import httpx
 
+from services.gemini import (
+    build_knowledge_document as build_knowledge_document_fallback,
+    gemini_ready,
+    generate_json_fallback,
+    generate_text_fallback,
+)
+
 log = logging.getLogger("k2")
 
 K2_BASE_URL = os.getenv("K2_BASE_URL", "https://api.k2think.ai/v1").rstrip("/")
@@ -30,11 +37,19 @@ class K2AuthError(K2Error):
     """Raised when the K2 API key is missing or rejected."""
 
 
+def _env_flag(name: str, default: bool = False) -> bool:
+    raw = os.getenv(name)
+    if raw is None:
+        return default
+    return raw.strip().lower() in {"1", "true", "yes", "on"}
+
+
 class K2Service:
     def __init__(self):
         self._client: httpx.AsyncClient | None = None
         self._api_key: str | None = None
         self._ready = False
+        self._gemini_fallback_enabled = False
         self._main_context_doc: str | None = None
         self._agent_contexts: dict[str, str] = {}
 
@@ -42,11 +57,18 @@ class K2Service:
     def ready(self) -> bool:
         return self._ready
 
+    @property
+    def gemini_fallback_ready(self) -> bool:
+        return self._gemini_fallback_enabled and gemini_ready()
+
     async def start(self):
         self._api_key = os.getenv("K2_API_KEY", "").strip()
+        self._gemini_fallback_enabled = _env_flag("ENABLE_GEMINI_FALLBACK", default=True)
         if not self._api_key:
             log.warning("K2_API_KEY not set. AI routes will be unavailable.")
             self._ready = False
+            if self.gemini_fallback_ready:
+                log.info("Gemini fallback is available and will handle AI requests.")
             return
 
         self._client = httpx.AsyncClient(
@@ -59,6 +81,8 @@ class K2Service:
         )
         self._ready = True
         log.info("K2 service initialized with model %s", K2_MODEL)
+        if self.gemini_fallback_ready:
+            log.info("Gemini fallback enabled with model %s", os.getenv("GEMINI_MODEL", os.getenv("VISION_FALLBACK_MODEL", "gemini-2.5-flash")))
 
     async def stop(self):
         if self._client:
@@ -116,33 +140,54 @@ class K2Service:
         if system_instruction:
             messages.append({"role": "system", "content": system_instruction})
         messages.append({"role": "user", "content": prompt})
-        return await self._request(messages, temperature=0.5)
+        try:
+            return await self._request(messages, temperature=0.5)
+        except K2Error:
+            if not self.gemini_fallback_ready:
+                raise
+            log.warning("K2 text generation failed; using Gemini fallback.")
+            return await generate_text_fallback(prompt, system_instruction=system_instruction)
 
     async def generate_json(self, prompt: str, system_instruction: str = "") -> Any:
-        text = await self.generate_text(
-            (
-                prompt
-                + "\n\nIMPORTANT: Respond with valid JSON only. "
-                + "No markdown fences. No explanation."
-            ),
-            system_instruction=system_instruction or "Return valid JSON only.",
+        full_prompt = (
+            prompt
+            + "\n\nIMPORTANT: Respond with valid JSON only. "
+            + "No markdown fences. No explanation."
         )
 
-        cleaned = text.strip()
-        if cleaned.startswith("```"):
-            lines = [line for line in cleaned.splitlines() if not line.strip().startswith("```")]
-            cleaned = "\n".join(lines).strip()
+        try:
+            text = await self.generate_text(
+                full_prompt,
+                system_instruction=system_instruction or "Return valid JSON only.",
+            )
 
-        return json.loads(cleaned)
+            cleaned = text.strip()
+            if cleaned.startswith("```"):
+                lines = [line for line in cleaned.splitlines() if not line.strip().startswith("```")]
+                cleaned = "\n".join(lines).strip()
+
+            return json.loads(cleaned)
+        except (K2Error, json.JSONDecodeError):
+            if not self.gemini_fallback_ready:
+                raise
+            log.warning("K2 JSON generation failed; using Gemini fallback.")
+            return await generate_json_fallback(
+                prompt,
+                system_instruction=system_instruction or "Return valid JSON only.",
+            )
 
     async def build_knowledge_document(self, prompt: str) -> str:
-        return await self.generate_text(
-            prompt,
-            system_instruction=(
-                "You are preparing an organized knowledge brief for a reasoning assistant. "
-                "Be specific, structured, and grounded in the provided material."
-            ),
+        system_instruction = (
+            "You are preparing an organized knowledge brief for a reasoning assistant. "
+            "Be specific, structured, and grounded in the provided material."
         )
+        try:
+            return await self.generate_text(prompt, system_instruction=system_instruction)
+        except K2Error:
+            if not self.gemini_fallback_ready:
+                raise
+            log.warning("K2 knowledge-document generation failed; using Gemini fallback.")
+            return await build_knowledge_document_fallback(prompt)
 
     async def send_prompt(self, prompt: str, system_instruction: str = "") -> str:
         context_prefix = ""

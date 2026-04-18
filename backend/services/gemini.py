@@ -16,17 +16,36 @@ import json
 import os
 from typing import Any
 
-from google import genai
-from google.genai import types
+try:
+    from google import genai
+    from google.genai import types
+except ImportError:  # pragma: no cover - depends on local package install
+    genai = None
+    types = None
 
-MODEL = "gemini-2.5-flash"
+MODEL = os.getenv("GEMINI_MODEL", os.getenv("VISION_FALLBACK_MODEL", "gemini-2.5-flash"))
+
+
+def _get_api_key() -> str:
+    return (
+        os.getenv("GEMINI_API_KEY")
+        or os.getenv("GOOGLE_AI_API_KEY")
+        or ""
+    ).strip()
+
+
+def gemini_ready() -> bool:
+    api_key = _get_api_key()
+    return bool(genai and types and api_key and api_key != "your_key_here")
 
 
 def get_client() -> genai.Client:
     """Get a configured Gemini client. Raises RuntimeError if key not set."""
-    api_key = os.getenv("GEMINI_API_KEY")
+    api_key = _get_api_key()
+    if not genai or not types:
+        raise RuntimeError("google-genai is not installed. Add it to backend requirements to enable Gemini fallback.")
     if not api_key or api_key == "your_key_here":
-        raise RuntimeError("GEMINI_API_KEY not set. Add it to backend/.env")
+        raise RuntimeError("Gemini fallback key not set. Add GEMINI_API_KEY or GOOGLE_AI_API_KEY to backend/.env")
     return genai.Client(api_key=api_key)
 
 

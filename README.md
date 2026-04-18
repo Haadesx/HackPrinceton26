@@ -57,7 +57,7 @@ Once the workflow works there, it scales:
 
 ---
 
-## Why Judges Should Care
+## Why It Stands Out
 
 Most student AI tools stop at:
 - chat
@@ -71,7 +71,7 @@ Syllara goes further:
 - it converts weak understanding into drills, quizzes, and study guides
 - it is structured for institutional expansion, not just a demo prompt
 
-The result feels less like “an LLM app” and more like a real academic operating system.
+The result feels less like an AI wrapper and more like a real academic operating system.
 
 ---
 
@@ -213,7 +213,7 @@ Syllara is not only for students. It can become the workflow layer for advisors,
 
 ## Demo Flow
 
-If you have 2 minutes with a judge, show this:
+For a short live demo, show this:
 
 1. Open the Command Center and show semester triage.
 2. Click into a risky Rutgers assignment and show why the system flags it.

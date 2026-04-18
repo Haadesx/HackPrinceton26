@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+elevenlabs
+python-dotenv
+google-genai
+pdfplumber
+python-multipart
+httpx
+reportlab

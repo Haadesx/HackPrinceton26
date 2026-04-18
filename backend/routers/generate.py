@@ -1,6 +1,7 @@
 """Generation router powered by K2 Think V2."""
 
 import json
+import re
 from fastapi import APIRouter, HTTPException
 
 from models.schemas import (
@@ -12,6 +13,7 @@ from models.schemas import (
     QuizQuestion,
 )
 from services.k2 import k2_service
+from services.gemini import generate_text_fallback, gemini_ready
 from prompts.context_builder import (
     build_study_guide_generation_prompt,
     build_flashcards_generation_prompt,
@@ -135,6 +137,86 @@ def _extract_flashcards_payload(result: dict | list) -> list[dict]:
     raise ValueError("Unexpected flashcard format")
 
 
+def _clean_study_guide_markdown(text: str) -> str:
+    """Remove common model meta-commentary so the guide reads like study material."""
+    cleaned = text.strip()
+
+    fence_match = re.match(r"^```(?:markdown)?\s*([\s\S]*?)\s*```$", cleaned, flags=re.IGNORECASE)
+    if fence_match:
+        cleaned = fence_match.group(1).strip()
+
+    cleaned = re.sub(r"(?is)<think>[\s\S]*?</think>", "", cleaned).strip()
+    cleaned = re.sub(r"(?im)^</think>\s*", "", cleaned).strip()
+
+    drop_patterns = [
+        r"^here(?:'s| is)\s+(?:a\s+)?study\s+guide[^\n]*\n+",
+        r"^let'?s\s+(?:break|walk|go)\s+[^\n]*\n+",
+        r"^i(?:'ll| will)\s+[^\n]*\n+",
+        r"^below\s+is\s+[^\n]*\n+",
+        r"^this\s+study\s+guide[^\n]*\n+",
+    ]
+    for pattern in drop_patterns:
+        cleaned = re.sub(pattern, "", cleaned, flags=re.IGNORECASE)
+
+    lines = cleaned.splitlines()
+    while lines and not lines[0].lstrip().startswith(("#", "-", "*", "1.", "2.", "3.")):
+        if re.search(r"(study guide|break this down|walk through|explain|overview)", lines[0], flags=re.IGNORECASE):
+            lines.pop(0)
+            continue
+        break
+
+    cleaned = "\n".join(lines).strip()
+
+    heading_match = re.search(r"(?m)^#\s+.+$", cleaned)
+    if heading_match:
+        cleaned = cleaned[heading_match.start():].strip()
+
+    trailing_markers = [
+        r"(?im)^make sure .*",
+        r"(?im)^also mention .*",
+        r"(?im)^common mistakes:.*",
+        r"(?im)^potential pitfalls:.*",
+        r"(?im)^now produce final .*",
+    ]
+    for marker in trailing_markers:
+        split_match = re.search(marker, cleaned)
+        if split_match:
+            cleaned = cleaned[:split_match.start()].strip()
+
+    return cleaned
+
+
+def _looks_like_student_guide(text: str) -> bool:
+    lowered = text.lower()
+    bad_signals = [
+        "we need to",
+        "we must",
+        "the user wants",
+        "output must",
+        "now produce final",
+        "make sure",
+        "likely the first heading",
+        "don't mention being an ai",
+        "just produce the study guide",
+    ]
+    if any(signal in lowered for signal in bad_signals):
+        return False
+
+    required_headings = [
+        "overview",
+        "key concepts",
+        "common mistakes",
+        "practice problems",
+    ]
+    if not any(text.lstrip().startswith(prefix) for prefix in ("#", "## ")):
+        return False
+    if sum(1 for heading in required_headings if heading in lowered) < 3:
+        return False
+    if len(text.strip()) < 600:
+        return False
+    return True
+
+
 async def _generate_text(prompt: str, system: str) -> str:
     return await k2_service.generate_text(prompt, system_instruction=system)
 
@@ -170,14 +252,7 @@ async def generate_study_guide(request: GenerateRequest):
     """Generate a markdown study guide via K2."""
     course = _find_course(request.course_id)
 
-    generation_prompt = build_study_guide_generation_prompt(
-        topic=request.topic,
-        course_id=request.course_id,
-        course_name=course["name"],
-        additional_context=request.additional_context,
-    )
-
-    gemini_fallback_prompt = build_study_guide_prompt(
+    base_prompt = build_study_guide_prompt(
         topic=request.topic,
         course_id=request.course_id,
         course_name=course["name"],
@@ -187,9 +262,26 @@ async def generate_study_guide(request: GenerateRequest):
 
     try:
         content = await _generate_text(
-            generation_prompt or gemini_fallback_prompt,
-            system="You are an expert academic tutor creating study materials.",
+            base_prompt,
+            system=(
+                "You are an expert academic tutor creating polished study materials. "
+                "Return only the final student-facing study guide in markdown. "
+                "Do not include meta-commentary, self-reference, planning text, hidden reasoning, "
+                "prompt restatements, outlines with ellipses, or notes to yourself. "
+                "Do not echo instructions. Fill every section with real study content."
+            ),
         )
+        content = _clean_study_guide_markdown(content)
+        if not _looks_like_student_guide(content) and gemini_ready():
+            content = await generate_text_fallback(
+                base_prompt,
+                system_instruction=(
+                    "You are an expert academic tutor creating polished study materials. "
+                    "Return only the final student-facing study guide in markdown. "
+                    "Start directly with markdown headings and fill each section with real content."
+                ),
+            )
+            content = _clean_study_guide_markdown(content)
         return StudyGuideResponse(
             content=content,
             topic=request.topic,

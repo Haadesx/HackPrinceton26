@@ -42,4 +42,10 @@ Generate a well-structured markdown study guide that includes:
 
 Use proper markdown formatting with headers (##, ###), bold, lists, and code blocks where appropriate.
 Make the guide thorough enough to study from, but concise enough to review in 15-20 minutes.
+Write the guide itself, not commentary about the guide.
+Do not mention being an AI, assistant, tutor, or model.
+Do not include setup phrases like "here's a guide", "let's dive in", "I will walk through", or "to understand this topic".
+Do not include hidden reasoning, analysis notes, or explanations addressed to yourself.
+Address the student only through the content itself: definitions, explanations, examples, pitfalls, and practice.
+Start directly with the first markdown heading.
 """

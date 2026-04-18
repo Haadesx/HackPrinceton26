@@ -180,9 +180,14 @@ def build_study_guide_generation_prompt(
     return (
         f"Generate a comprehensive STUDY GUIDE for: {topic}\n"
         f"Course: {course_id.upper()} — {course_name}{context}\n\n"
-        "Format as well-structured markdown with: Overview, Key Concepts, "
-        "Detailed Explanation with examples, Common Mistakes, Practice Problems, "
-        "and Connections to other topics. Use the course knowledge from your knowledge base."
+        "Write directly to the student as a clean study resource, not as an assistant explaining what it is doing.\n"
+        "Do not include any meta-commentary, planning notes, self-reference, or phrases like "
+        "'here is a study guide', 'let's break this down', 'I will explain', or 'you should understand'.\n"
+        "Do not talk about the prompt, the task, or your reasoning process.\n"
+        "Start immediately with the study content in well-structured markdown.\n"
+        "Use this structure: Overview, Key Concepts, Detailed Explanation with examples, "
+        "Common Mistakes, Practice Problems with answers, and Connections to other topics.\n"
+        "Keep the tone clear, student-facing, and easy to review before an exam."
     )
 
 

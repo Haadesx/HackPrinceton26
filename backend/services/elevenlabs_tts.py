@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 import os
 from io import BytesIO
 from typing import Any
@@ -7,6 +8,8 @@ from typing import Any
 import numpy as np
 import soundfile as sf
 from elevenlabs import ElevenLabs, VoiceSettings
+
+logger = logging.getLogger(__name__)
 
 DEFAULT_KOKORO_VOICE_ID = os.getenv("KOKORO_VOICE", "af_heart")
 DEFAULT_ELEVENLABS_VOICE_ID = os.getenv("ELEVENLABS_VOICE_ID", "21m00Tcm4TlvDq8ikWAM")
@@ -40,6 +43,23 @@ def _get_tts_client() -> ElevenLabs | None:
     return ElevenLabs(api_key=api_key)
 
 
+def _resolve_kokoro_voice(voice_id: str | None) -> str:
+    """Only pass Kokoro-compatible voice identifiers to the fallback engine."""
+    if not voice_id:
+        return DEFAULT_KOKORO_VOICE_ID
+
+    normalized = voice_id.strip()
+    if not normalized:
+        return DEFAULT_KOKORO_VOICE_ID
+
+    # ElevenLabs voice ids are opaque alphanumeric ids like 21m00T...
+    # Kokoro expects short symbolic names like af_heart.
+    if "_" in normalized:
+        return normalized
+
+    return DEFAULT_KOKORO_VOICE_ID
+
+
 def _text_to_speech_elevenlabs(text: str, voice_id: str | None = None) -> bytes:
     client = _get_tts_client()
     if client is None:
@@ -65,7 +85,7 @@ def _text_to_speech_kokoro(text: str, voice_id: str | None = None) -> bytes:
     pipeline = _get_kokoro_pipeline()
     generator = pipeline(
         text,
-        voice=voice_id or DEFAULT_KOKORO_VOICE_ID,
+        voice=_resolve_kokoro_voice(voice_id),
         speed=float(os.getenv("KOKORO_SPEED", "1.0")),
     )
 
@@ -95,5 +115,6 @@ def text_to_speech(text: str, voice_id: str | None = None) -> bytes:
 
     try:
         return _text_to_speech_elevenlabs(text, voice_id)
-    except Exception:
+    except Exception as exc:
+        logger.warning("ElevenLabs TTS failed, falling back to Kokoro: %s", exc)
         return _text_to_speech_kokoro(text, voice_id)

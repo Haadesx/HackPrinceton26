@@ -8,7 +8,6 @@ import type {
 
 // Mock triage data — maps assignment IDs to their statuses
 const INITIAL_TRIAGE: Record<string, TriageStatus> = {
-  "cs512-ps3": "danger",
   "cs513-hw4": "danger",
   "cs518-lab3": "danger",
   "cs533-paper": "danger",

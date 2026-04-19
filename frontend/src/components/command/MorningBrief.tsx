@@ -11,9 +11,9 @@ function generateBriefText(): string {
 
   return (
     `Good morning. Today is ${today}. ` +
-    `Priority alert: 16:198:512 problem set three and 16:198:513 homework four are both due next week. ` +
+    `Priority alert: 16:198:513 homework four is due next week. ` +
     `16:198:518 lab three still needs trace-backed evidence, and 16:198:536 homework three needs a clearer regularization story. ` +
-    `Cross-domain insight: query planning from 16:198:527 supports retrieval thinking in 16:198:533, while algorithm design from 16:198:513 carries into machine learning tradeoff analysis. ` +
+    `Cross-domain insight: proof discipline from 16:198:513 supports evaluation design in 16:198:533, while model-selection discipline in 16:198:536 helps keep the final NLP paper honest. ` +
     `Leverage this connection for study efficiency.`
   );
 }

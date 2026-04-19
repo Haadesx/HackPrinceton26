@@ -176,11 +176,9 @@ flowchart LR
 
 ## Rutgers-First Current Semester
 
-The default in-app semester is built around Rutgers graduate CS work:
-- `16:198:512` Introduction to Data Structures and Algorithms
+The default in-app semester is built around a realistic Rutgers MSCS load:
 - `16:198:513` Design and Analysis of Data Structures and Algorithms
 - `16:198:518` Operating Systems Design
-- `16:198:527` Database Systems for Data Science
 - `16:198:533` Natural Language Processing
 - `16:198:536` Machine Learning
 

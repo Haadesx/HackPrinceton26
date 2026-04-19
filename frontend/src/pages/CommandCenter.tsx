@@ -53,9 +53,9 @@ export function CommandCenter() {
     });
     return (
       `Good morning. Today is ${today}. ` +
-      `Priority alert: 16:198:512 problem set three and 16:198:513 homework four are due next week. ` +
+      `Priority alert: 16:198:513 homework four is due next week. ` +
       `16:198:518 lab three still needs trace evidence, and 16:198:536 homework three needs a cleaner baseline story. ` +
-      `Cross-domain insight: database query planning in 16:198:527 improves retrieval and evaluation thinking in 16:198:533.`
+      `Cross-domain insight: algorithmic proof discipline in 16:198:513 improves evaluation design in 16:198:533.`
     );
   });
 
@@ -211,12 +211,12 @@ export function CommandCenter() {
                             </p>
                           </div>
                           <div className="space-y-2.5">
-                            <BriefItem accent="danger" label="16:198:518 Lab 3: Virtual Memory and File Cache" meta="Due Apr 27" />
                             <BriefItem accent="danger" label="16:198:513 HW4: Network Flow and Reductions" meta="Due Apr 24" />
-                            <BriefItem accent="warning" label="16:198:512 PS3: Graph Algorithms and Heaps" meta="Due Apr 23" />
+                            <BriefItem accent="danger" label="16:198:518 Lab 3: Virtual Memory and File Cache" meta="Due Apr 27" />
+                            <BriefItem accent="warning" label="16:198:533 Final NLP Project Paper" meta="Due May 5" />
                           </div>
                           <p className="text-[12px] text-white/25 leading-relaxed italic border-l border-white/[0.06] pl-4">
-                            Cross-domain insight: algorithmic rigor from 16:198:513 carries into retrieval design in 16:198:533 and model-selection discipline in 16:198:536.
+                            Cross-domain insight: algorithmic rigor from 16:198:513 carries into evaluation design in 16:198:533, while 16:198:536 keeps the baseline story honest.
                           </p>
                         </div>
                       </div>

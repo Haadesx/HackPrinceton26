@@ -35,10 +35,10 @@ export function SyllaraChatArea({ onFocusEnter, isExpanded }: SyllaraChatAreaPro
     });
     return (
       `Good morning. Today is ${today}. ` +
-      `Priority alert: 16:198:512 problem set three is due next week. ` +
+      `Priority alert: 16:198:513 homework four is due next week. ` +
       `16:198:536 homework three still needs one meaningful baseline comparison. ` +
       `16:198:518 lab three needs trace-backed systems evidence before the report is credible. ` +
-      `Cross-domain insight: NLP evaluation in 16:198:533 benefits from database and machine-learning discipline.`
+      `Cross-domain insight: NLP evaluation in 16:198:533 benefits from algorithmic proof discipline and machine-learning baseline discipline.`
     );
   });
 

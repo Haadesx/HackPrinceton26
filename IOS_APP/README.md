@@ -1,6 +1,6 @@
 # Brain Brew iOS
 
-Native SwiftUI iOS app for Brain Brew — academic mission control for Rutgers MSCS.
+Native SwiftUI iOS app for Brain Brew — academic mission control for students.
 
 ## Requirements
 
@@ -17,6 +17,22 @@ open BrainBrew.xcodeproj
 ```
 
 Then in Xcode: select an iPhone simulator → Run.
+
+## Current Production Validation
+
+Validated against `https://api.brain-brew.us` on `2026-04-19`.
+
+- Working:
+  - `GET /api/health`
+  - `GET /api/courses`
+  - `GET /api/announcements`
+- Currently failing in production:
+  - `POST /api/voice`
+  - `GET /api/universities/{slug}/profile`
+  - `GET /api/universities/{slug}/catalog`
+  - `POST /api/universities/{slug}/transcript/import`
+
+Those failures are currently backend-side deployment/runtime issues rather than iOS configuration issues.
 
 ## Default API
 
@@ -65,6 +81,7 @@ python run.py
 ## App Structure
 
 ```
+BrainBrew.xcodeproj
 Syllara/Sources/
   App/          SyllaraApp.swift, RootNavigationView.swift
   Core/         APIClient.swift, Models.swift, AudioManager.swift, VoiceRecorder.swift

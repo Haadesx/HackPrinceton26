@@ -6,13 +6,13 @@
 
 <div align="center">
 
-### Rutgers-First Academic Mission Control
+### Academic Mission Control for Students
 
 BrainBrew turns a fragmented semester into a reasoning system.
 
 [![HackPrinceton 2026](https://img.shields.io/badge/HackPrinceton-2026-black?style=for-the-badge&labelColor=111111&color=E87722)](#)
 [![K2 Think V2](https://img.shields.io/badge/K2%20Think%20V2-Core%20Reasoning-black?style=for-the-badge&labelColor=111111&color=CC0033)](#ai-stack)
-[![Rutgers MSCS](https://img.shields.io/badge/Rutgers-M.S.%20C.S.%20Focused-black?style=for-the-badge&labelColor=111111&color=A41E35)](#demo-context)
+[![Student Workflow](https://img.shields.io/badge/Focus-Student%20Workflow-black?style=for-the-badge&labelColor=111111&color=A41E35)](#demo-context)
 [![iOS + Web](https://img.shields.io/badge/Platforms-Web%20%2B%20iOS-black?style=for-the-badge&labelColor=111111&color=FFB25B)](#platforms)
 
 </div>
@@ -146,13 +146,13 @@ Used when K2 is unavailable during generation flows.
 
 ## Demo Context
 
-The default experience is built around a realistic Rutgers M.S. in Computer Science semester:
+The current demo dataset is built around a realistic graduate computer science semester:
 - `16:198:513` Design and Analysis of Data Structures and Algorithms
 - `16:198:518` Operating Systems Design
 - `16:198:533` Natural Language Processing
 - `16:198:536` Machine Learning
 
-This gives the product a credible, high-context demo environment across algorithms, systems, NLP, and ML.
+Rutgers is the current showcase context, but the product direction is broader: BrainBrew is designed as a general academic workflow layer for students navigating dense, multi-course semesters.
 
 Live deployment:
 - Web: `https://brain-brew.us`
@@ -180,7 +180,7 @@ flowchart LR
     G --> J[ElevenLabs]
     G --> K[Kokoro Fallback]
     G --> L[Official University Sources]
-    G --> M[Rutgers Demo Data]
+    G --> M[Demo Semester Data]
 
     H --> N[Semester-Aware Reasoning]
     I --> N

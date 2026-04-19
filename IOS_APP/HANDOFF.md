@@ -5,7 +5,7 @@ This file summarizes the iOS-relevant changes made after the initial prompt to b
 ## Current Product Direction
 
 - Product name: `BrainBrew`
-- Web app and backend are Rutgers-first
+- Public positioning is generalized for students
 - Primary production backend target: `https://api.brain-brew.us`
 - Web/frontend production domain target: `https://brain-brew.us`
 
@@ -16,6 +16,7 @@ This file summarizes the iOS-relevant changes made after the initial prompt to b
 - The product name shifted from `Syllara` to `BrainBrew` in the visible app branding.
 - The iOS Xcode project name is now `BrainBrew`.
 - Some internal folder paths still use `Syllara/` as the source tree root. That is code-structure debt, not user-facing branding.
+- Rutgers remains the current demo dataset, but not the public-facing headline.
 
 ### Backend Contract Changes That Matter To iOS
 
@@ -48,6 +49,23 @@ This file summarizes the iOS-relevant changes made after the initial prompt to b
 - Voice playback goes through `POST /api/voice`
 - Pause/resume/stop is handled client-side by `AudioManager`
 - Voice recording/transcription goes through `POST /api/transcribe`
+
+## Production Validation Snapshot
+
+Validated against `https://api.brain-brew.us` on `2026-04-19`.
+
+- Working:
+  - `GET /api/health`
+  - `GET /api/courses`
+  - `GET /api/announcements`
+- Failing at deployed backend edge:
+  - `POST /api/voice` -> `502`
+  - `GET /api/universities/{slug}/profile` -> `502`
+  - `GET /api/universities/{slug}/catalog` -> `502`
+  - `POST /api/universities/{slug}/transcript/import` -> `404`
+  - `POST /api/transcript/import` -> `502`
+
+This means the current production blocker is backend deployment/runtime state, not the iOS base URL configuration.
 
 ## Known Follow-Up Work For Another Codex Instance
 

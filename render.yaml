@@ -26,6 +26,8 @@ services:
         value: 21m00Tcm4TlvDq8ikWAM
       - key: ELEVENLABS_TTS_MODEL
         value: eleven_turbo_v2_5
+      - key: ENABLE_KOKORO_FALLBACK
+        value: "false"
       - key: HF_TOKEN
         sync: false
       - key: KOKORO_VOICE

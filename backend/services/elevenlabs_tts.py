@@ -20,6 +20,13 @@ SAMPLE_RATE = 24000
 _kokoro_pipeline: Any | None = None
 
 
+def _env_flag(name: str, default: bool = False) -> bool:
+    raw = os.getenv(name)
+    if raw is None:
+        return default
+    return raw.strip().lower() in {"1", "true", "yes", "on"}
+
+
 def _get_kokoro_pipeline():
     global _kokoro_pipeline
     if _kokoro_pipeline is None:
@@ -116,5 +123,9 @@ def text_to_speech(text: str, voice_id: str | None = None) -> bytes:
     try:
         return _text_to_speech_elevenlabs(text, voice_id)
     except Exception as exc:
+        if not _env_flag("ENABLE_KOKORO_FALLBACK", default=False):
+            logger.warning("ElevenLabs TTS failed and Kokoro fallback is disabled: %s", exc)
+            raise RuntimeError("Server TTS unavailable")
+
         logger.warning("ElevenLabs TTS failed, falling back to Kokoro: %s", exc)
         return _text_to_speech_kokoro(text, voice_id)

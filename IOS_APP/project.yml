@@ -40,7 +40,7 @@ targets:
         CFBundleShortVersionString: "1.0"
         CFBundleVersion: "1"
         LSRequiresIPhoneOS: true
-        BrainBrewAPIBaseURL: "http://10.29.52.79:8000"
+        BrainBrewAPIBaseURL: "https://api.brain-brew.us"
         UILaunchScreen:
           UIColorName: ""
           UIImageName: ""

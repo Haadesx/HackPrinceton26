@@ -36,7 +36,7 @@
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Brain Brew uses speech recognition to transcribe voice input directly on your device when available.</string>
 	<key>BrainBrewAPIBaseURL</key>
-	<string>http://10.29.52.79:8000</string>
+	<string>https://api.brain-brew.us</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

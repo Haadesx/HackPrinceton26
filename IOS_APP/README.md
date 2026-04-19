@@ -6,7 +6,7 @@ Native SwiftUI iOS app for Brain Brew — academic mission control for Rutgers M
 
 - macOS with Xcode 15+
 - `xcodegen` (`brew install xcodegen`)
-- Backend running at `http://127.0.0.1:8000` (or your LAN IP)
+- Production API available at `https://api.brain-brew.us`
 
 ## Setup
 
@@ -18,25 +18,49 @@ open BrainBrew.xcodeproj
 
 Then in Xcode: select an iPhone simulator → Run.
 
-## Physical Device / LAN Backend
+## Default API
 
-Edit `APIClient.swift` line 14:
+The iOS app now defaults to:
 
-```swift
-var baseURL: String = "http://192.168.1.XXX:8000"  // your Mac's LAN IP
+```text
+https://api.brain-brew.us
+```
+
+That value is stored in:
+- `project.yml`
+- `Syllara/Resources/Info.plist`
+
+## Local Development Override
+
+If you want to point the app at a local backend instead, change `BrainBrewAPIBaseURL` in either:
+- `project.yml` before regenerating the Xcode project
+- or `Syllara/Resources/Info.plist`
+
+Example local override:
+
+```text
+http://192.168.1.XXX:8000
 ```
 
 The backend must also allow your device IP in CORS origins (`main.py`).
 
 ## Backend
 
-Start the FastAPI backend before running the app:
+Start the FastAPI backend before running the app locally:
 
 ```bash
 cd ../backend
 pip install -r requirements.txt
 python run.py
 ```
+
+## Voice Stack
+
+- iOS always calls `POST /api/voice`
+- Backend TTS priority is now:
+  1. ElevenLabs
+  2. Kokoro fallback
+- Voice input still transcribes through `POST /api/transcribe`
 
 ## App Structure
 
@@ -73,7 +97,7 @@ Syllara/Sources/
 | STT | `POST /api/transcribe` |
 | University search | `GET /api/universities/search?q=` |
 | University profile | `GET /api/universities/{slug}/profile` |
-| Transcript import | `POST /api/transcript/import` |
+| Transcript import | `POST /api/universities/{slug}/transcript/import` |
 
 ## Design
 

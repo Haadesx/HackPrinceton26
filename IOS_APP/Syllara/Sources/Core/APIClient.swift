@@ -25,7 +25,7 @@ final class APIClient: ObservableObject {
            !configured.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             return configured
         }
-        return "http://127.0.0.1:8000"
+        return "https://api.brain-brew.us"
     }()
 
     static let shared = APIClient()
@@ -194,8 +194,8 @@ extension APIClient {
 
     func importTranscript(universitySlug: String, fileData: Data, fileName: String) async throws -> TranscriptImportResult {
         let raw = try await postMultipart(
-            "/api/transcript/import",
-            fields: ["university_slug": universitySlug],
+            "/api/universities/\(universitySlug)/transcript/import",
+            fields: [:],
             fileData: fileData,
             fileName: fileName,
             mimeType: fileName.hasSuffix(".pdf") ? "application/pdf" : "text/plain"

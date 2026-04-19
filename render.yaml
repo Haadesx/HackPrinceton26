@@ -29,8 +29,9 @@ services:
       - key: KOKORO_SPEED
         value: "1.0"
 
-  - type: static
+  - type: web
     name: brainbrew-web
+    runtime: static
     rootDir: frontend
     buildCommand: npm ci && npm run build
     staticPublishPath: dist

@@ -2,22 +2,24 @@ from __future__ import annotations
 
 import os
 from io import BytesIO
+from typing import Any
 
 import numpy as np
 import soundfile as sf
 from elevenlabs import ElevenLabs
-from kokoro import KPipeline
 
 DEFAULT_VOICE_ID = os.getenv("KOKORO_VOICE", "af_heart")
 MAX_TEXT_LENGTH = 500
 SAMPLE_RATE = 24000
 
-_kokoro_pipeline: KPipeline | None = None
+_kokoro_pipeline: Any | None = None
 
 
-def _get_kokoro_pipeline() -> KPipeline:
+def _get_kokoro_pipeline():
     global _kokoro_pipeline
     if _kokoro_pipeline is None:
+        from kokoro import KPipeline
+
         _kokoro_pipeline = KPipeline(lang_code=os.getenv("KOKORO_LANG_CODE", "a"))
     return _kokoro_pipeline
 

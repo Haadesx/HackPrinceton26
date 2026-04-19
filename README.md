@@ -41,6 +41,23 @@ This is not a generic study chatbot. It is an academic workflow system built aro
 
 ---
 
+## Product Preview
+
+<div align="center">
+  <img src="./docs/images/ios-command-center.jpg" alt="BrainBrew iOS Command Center" width="22%" />
+  <img src="./docs/images/ios-assignment-detail.jpg" alt="BrainBrew iOS assignment detail" width="22%" />
+  <img src="./docs/images/ios-chat.jpg" alt="BrainBrew iOS chat" width="22%" />
+  <img src="./docs/images/ios-study-lab.jpg" alt="BrainBrew iOS Study Lab" width="22%" />
+</div>
+
+<div align="center">
+
+Command Center • Assignment Recovery • Semester-Aware Chat • Study Mission Lab
+
+</div>
+
+---
+
 ## What BrainBrew Does
 
 ### Command Center
@@ -137,6 +154,10 @@ The default experience is built around a realistic Rutgers M.S. in Computer Scie
 
 This gives the product a credible, high-context demo environment across algorithms, systems, NLP, and ML.
 
+Live deployment:
+- Web: `https://brain-brew.us`
+- API: `https://api.brain-brew.us`
+
 ---
 
 ## Architecture
@@ -172,10 +193,6 @@ flowchart LR
 ---
 
 ## Deployment
-
-Production targets:
-- Web: `https://brain-brew.us`
-- API: `https://api.brain-brew.us`
 
 Hosted on:
 - `Render`

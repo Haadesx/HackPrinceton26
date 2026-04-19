@@ -7,7 +7,7 @@ import { VoiceFeedback } from "@/components/voice/VoiceFeedback";
 import { useAppStore } from "@/store/useAppStore";
 import { ArtifactRenderer } from "@/components/chat/ArtifactRenderer";
 import { StudyLabPane } from "@/components/study/StudyLabPane";
-import { Send, Volume2, Loader2, X, Mic, MicOff, MessageSquare, Sparkles, Cpu } from "lucide-react";
+import { Send, Volume2, Loader2, X, Mic, MicOff, MessageSquare, Sparkles, Cpu, Pause, Play } from "lucide-react";
 
 type ChatTab = "chat" | "lab";
 
@@ -17,7 +17,7 @@ interface ChatProps {
 
 export function Chat({ onClose: onCloseProp }: ChatProps) {
   const { messages, loading, send, clearChat } = useChat();
-  const { speak, isPlaying, isLoading: voiceLoading } = useVoice();
+  const { speak, pause, resume, isPlaying, isPaused, isLoading: voiceLoading } = useVoice();
   const {
     startListening,
     stopListening,
@@ -227,13 +227,25 @@ export function Chat({ onClose: onCloseProp }: ChatProps) {
                           />
                           {msg.role === "assistant" && msg.content && (
                             <button
-                              onClick={() => speak(msg.content)}
-                              disabled={voiceLoading || isPlaying}
+                              onClick={() => {
+                                if (isPlaying) {
+                                  pause();
+                                } else if (isPaused) {
+                                  resume();
+                                } else {
+                                  speak(msg.content);
+                                }
+                              }}
+                              disabled={voiceLoading}
                               className="mt-2 text-white/30 hover:text-white/60 transition-colors"
-                              title="Read aloud"
+                              title={isPlaying ? "Pause readout" : isPaused ? "Resume readout" : "Read aloud"}
                             >
                               {voiceLoading ? (
                                 <Loader2 size={14} className="animate-spin" />
+                              ) : isPlaying ? (
+                                <Pause size={14} />
+                              ) : isPaused ? (
+                                <Play size={14} />
                               ) : (
                                 <Volume2 size={14} />
                               )}

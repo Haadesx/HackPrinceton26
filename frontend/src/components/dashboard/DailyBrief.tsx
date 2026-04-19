@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Sun, Volume2, VolumeX, Loader2 } from "lucide-react";
+import { Sun, Volume2, VolumeX, Loader2, Pause, Play } from "lucide-react";
 import { useVoice } from "../../hooks/useVoice";
 import { useAppStore } from "../../store/useAppStore";
 import type { Assignment } from "../../types";
@@ -37,7 +37,7 @@ function buildBriefText(assignments: Assignment[], courses: { id: string; course
 }
 
 export function DailyBrief() {
-  const { speak, stop, isPlaying, isLoading } = useVoice();
+  const { speak, pause, resume, stop, isPlaying, isPaused, isLoading } = useVoice();
   const assignments = useAppStore((s) => s.assignments);
   const courses = useAppStore((s) => s.courses);
 
@@ -48,7 +48,9 @@ export function DailyBrief() {
 
   const handlePlay = () => {
     if (isPlaying) {
-      stop();
+      pause();
+    } else if (isPaused) {
+      resume();
     } else {
       speak(briefText);
     }
@@ -69,12 +71,23 @@ export function DailyBrief() {
           {isLoading ? (
             <Loader2 size={16} className="animate-spin" />
           ) : isPlaying ? (
-            <VolumeX size={16} />
+            <Pause size={16} />
+          ) : isPaused ? (
+            <Play size={16} />
           ) : (
             <Volume2 size={16} />
           )}
-          {isPlaying ? "Stop" : "Listen"}
+          {isPlaying ? "Pause" : isPaused ? "Resume" : "Listen"}
         </button>
+        {(isPlaying || isPaused) && (
+          <button
+            onClick={stop}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg transition-colors bg-white/5 hover:bg-white/10 text-white/70 text-sm font-medium"
+          >
+            <VolumeX size={16} />
+            Stop
+          </button>
+        )}
       </div>
       <p className="text-sm text-gray-300 leading-relaxed">{briefText}</p>
     </div>

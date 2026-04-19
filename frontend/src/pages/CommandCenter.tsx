@@ -16,6 +16,8 @@ import {
   Mic,
   Loader2,
   Volume2,
+  Pause,
+  Play,
   ChevronUp,
   X,
   History,
@@ -23,7 +25,7 @@ import {
 
 export function CommandCenter() {
   const { messages, loading, send, clearChat } = useChat();
-  const { speak, stop, isPlaying, isLoading: voiceLoading } = useVoice();
+  const { speak, stop, pause, resume, isPlaying, isPaused, isLoading: voiceLoading } = useVoice();
   const activeRemediation = useCommandStore((s) => s.activeRemediation);
   const pendingChatPrompt = useAppStore((s) => s.pendingChatPrompt);
   const setPendingChatPrompt = useAppStore((s) => s.setPendingChatPrompt);
@@ -298,11 +300,19 @@ export function CommandCenter() {
                               <ArtifactRenderer content={msg.content} isComplete={isComplete} />
                               {msg.role === "assistant" && msg.content && (
                                 <button
-                                  onClick={() => speak(msg.content)}
-                                  disabled={voiceLoading || isPlaying}
+                                  onClick={() => {
+                                    if (isPlaying) {
+                                      pause();
+                                    } else if (isPaused) {
+                                      resume();
+                                    } else {
+                                      speak(msg.content);
+                                    }
+                                  }}
+                                  disabled={voiceLoading}
                                   className="mt-1.5 text-white/25 hover:text-white/50 transition-colors"
                                 >
-                                  {voiceLoading ? <Loader2 size={12} className="animate-spin" /> : <Volume2 size={12} />}
+                                  {voiceLoading ? <Loader2 size={12} className="animate-spin" /> : isPlaying ? <Pause size={12} /> : isPaused ? <Play size={12} /> : <Volume2 size={12} />}
                                 </button>
                               )}
                             </div>

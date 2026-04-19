@@ -8,6 +8,8 @@ import {
   Send,
   Volume2,
   Loader2,
+  Pause,
+  Play,
   Mic,
   ChevronDown,
   ChevronUp,
@@ -21,7 +23,7 @@ interface SyllaraChatAreaProps {
 
 export function SyllaraChatArea({ onFocusEnter, isExpanded }: SyllaraChatAreaProps) {
   const { messages, loading, send, clearChat } = useChat();
-  const { speak, stop, isPlaying, isLoading: voiceLoading } = useVoice();
+  const { speak, pause, resume, isPlaying, isPaused, isLoading: voiceLoading } = useVoice();
   const [input, setInput] = useState("");
   const [isHistoryVisible, setHistoryVisible] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -59,7 +61,9 @@ export function SyllaraChatArea({ onFocusEnter, isExpanded }: SyllaraChatAreaPro
 
   const handleOrbClick = () => {
     if (isPlaying) {
-      stop();
+      pause();
+    } else if (isPaused) {
+      resume();
     } else {
       speak(briefText);
     }
@@ -126,12 +130,24 @@ export function SyllaraChatArea({ onFocusEnter, isExpanded }: SyllaraChatAreaPro
                         />
                         {msg.role === "assistant" && msg.content && (
                           <button
-                            onClick={() => speak(msg.content)}
-                            disabled={voiceLoading || isPlaying}
+                            onClick={() => {
+                              if (isPlaying) {
+                                pause();
+                              } else if (isPaused) {
+                                resume();
+                              } else {
+                                speak(msg.content);
+                              }
+                            }}
+                            disabled={voiceLoading}
                             className="mt-1.5 text-white/25 hover:text-white/50 transition-colors"
                           >
                             {voiceLoading ? (
                               <Loader2 size={12} className="animate-spin" />
+                            ) : isPlaying ? (
+                              <Pause size={12} />
+                            ) : isPaused ? (
+                              <Play size={12} />
                             ) : (
                               <Volume2 size={12} />
                             )}

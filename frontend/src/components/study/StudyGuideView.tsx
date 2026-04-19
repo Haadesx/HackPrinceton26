@@ -1,5 +1,5 @@
 import { useVoice } from "@/hooks/useVoice";
-import { Volume2, Loader2 } from "lucide-react";
+import { Volume2, Loader2, Pause, Play, Square } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -8,7 +8,7 @@ interface StudyGuideViewProps {
 }
 
 export function StudyGuideView({ content }: StudyGuideViewProps) {
-  const { speak, isPlaying, isLoading } = useVoice();
+  const { speak, pause, resume, stop, isPlaying, isPaused, isLoading } = useVoice();
 
   if (!content) {
     return (
@@ -25,19 +25,40 @@ export function StudyGuideView({ content }: StudyGuideViewProps) {
   return (
     <div className="space-y-4">
       {/* Read aloud button */}
-      <div className="flex justify-end mb-2">
+      <div className="flex justify-end gap-2 mb-2">
         <button
-          onClick={() => speak(content.slice(0, 500))}
-          disabled={isLoading || isPlaying}
+          onClick={() => {
+            if (isPlaying) {
+              pause();
+            } else if (isPaused) {
+              resume();
+            } else {
+              speak(content.slice(0, 500));
+            }
+          }}
+          disabled={isLoading}
           className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs text-white/40 bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] hover:text-white/60 transition-all disabled:opacity-30"
         >
           {isLoading ? (
             <Loader2 size={12} className="animate-spin" />
+          ) : isPlaying ? (
+            <Pause size={12} />
+          ) : isPaused ? (
+            <Play size={12} />
           ) : (
             <Volume2 size={12} />
           )}
-          Read aloud
+          {isPlaying ? "Pause" : isPaused ? "Resume" : "Read aloud"}
         </button>
+        {(isPlaying || isPaused) && (
+          <button
+            onClick={stop}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs text-white/40 bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] hover:text-white/60 transition-all"
+          >
+            <Square size={12} />
+            Stop
+          </button>
+        )}
       </div>
 
       <div className="prose prose-invert max-w-none text-white/80 prose-headings:text-[#FFCDD6] prose-a:text-[#FFD08A] prose-code:text-[#FFD08A]">

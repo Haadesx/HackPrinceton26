@@ -1,4 +1,21 @@
-const BASE_URL = "http://localhost:8000/api";
+function resolveApiBaseUrl(): string {
+  const envBase = import.meta.env.VITE_API_BASE_URL?.trim();
+  if (envBase) {
+    return envBase.replace(/\/$/, "");
+  }
+
+  if (typeof window !== "undefined") {
+    const { hostname, protocol } = window.location;
+    if (hostname === "localhost" || hostname === "127.0.0.1") {
+      return "http://localhost:8000/api";
+    }
+    return `${protocol}//api.${hostname}/api`;
+  }
+
+  return "http://localhost:8000/api";
+}
+
+export const BASE_URL = resolveApiBaseUrl();
 
 async function request<T>(
   path: string,

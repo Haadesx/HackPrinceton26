@@ -227,7 +227,7 @@ export function CommandDock({
           className="flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] font-mono tracking-wider uppercase whitespace-nowrap transition-all duration-300 bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-[0_0_15px_rgba(232,69,69,0.3)] hover:shadow-[0_0_20px_rgba(232,69,69,0.5)] hover:scale-[1.02] active:scale-[0.98]"
         >
           <MessageCircle size={14} className="shrink-0" />
-          <span>Ask Syllara</span>
+          <span>Ask BrainBrew</span>
         </button>
       </div>
     </div>

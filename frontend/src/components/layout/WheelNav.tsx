@@ -3,7 +3,7 @@ import { LayoutDashboard, Network, CalendarDays, User } from "lucide-react";
 
 const NAV_ITEMS = [
   { path: "/", label: "HUB", icon: LayoutDashboard },
-  { path: "/lattice", label: "AETHER", icon: Network },
+  { path: "/lattice", label: "BRAINBREW", icon: Network },
   { path: "/calendar", label: "CALENDAR", icon: CalendarDays },
   { path: "/profile", label: "PROFILE", icon: User },
 ] as const;
@@ -84,7 +84,7 @@ export function WheelNav({ onNavigate, activeIndex: controlledIndex }: WheelNavP
       {/* Brand Mark - Absolute Top */}
       <div className="absolute top-12 left-10 flex flex-col items-start pointer-events-auto z-50">
         <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#CC0033] to-[#A41E35] shadow-[0_0_40px_rgba(255,107,107,0.3)] border border-white/30">
-          <span className="text-base font-black text-white">A</span>
+          <span className="text-base font-black text-white">B</span>
         </div>
       </div>
 

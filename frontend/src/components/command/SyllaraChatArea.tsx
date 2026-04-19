@@ -225,7 +225,7 @@ export function SyllaraChatArea({ onFocusEnter, isExpanded }: SyllaraChatAreaPro
               e.key === "Enter" && !e.shiftKey && handleSend()
             }
             onFocus={handleInputFocus}
-            placeholder="Ask Syllara anything..."
+            placeholder="Ask BrainBrew anything..."
             className="flex-1 bg-transparent text-sm text-white placeholder-white/25 outline-none"
           />
 

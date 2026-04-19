@@ -1,6 +1,6 @@
 /**
  * StudyLabPane — the inner content of Study Lab with no modal wrapper.
- * Used both inside the standalone StudyLab modal and embedded in Syllara Chat.
+ * Used both inside the standalone StudyLab modal and embedded in BrainBrew Chat.
  */
 import { useState, useEffect } from "react";
 import { BookOpen, Brain, HelpCircle, Loader2, Sparkles } from "lucide-react";

@@ -39,7 +39,7 @@ export function Sidebar({ onChatOpen }: SidebarProps) {
         </div>
         {!collapsed && (
           <span className="text-sm font-semibold tracking-[0.2em] text-white/80 uppercase">
-            Syllara
+            BrainBrew
           </span>
         )}
       </div>
@@ -73,7 +73,7 @@ export function Sidebar({ onChatOpen }: SidebarProps) {
           className={`flex items-center gap-3 w-full py-2.5 rounded-lg text-sm text-white bg-gradient-to-r from-[#CC0033] to-[#A41E35] shadow-lg shadow-[#CC0033]/25 hover:shadow-[#CC0033]/40 hover:brightness-110 transition-all duration-200 ${collapsed ? "justify-center px-0" : "px-3"}`}
         >
           <MessageCircle size={18} className="shrink-0" />
-          {!collapsed && <span className="font-medium">Syllara Chat</span>}
+          {!collapsed && <span className="font-medium">BrainBrew Chat</span>}
         </button>
       </div>
 

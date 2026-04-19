@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: brainbrew-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: CORS_ORIGINS
+        value: https://brain-brew.us,https://www.brain-brew.us
+      - key: ENABLE_GEMINI_FALLBACK
+        value: "true"
+      - key: K2_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GOOGLE_AI_API_KEY
+        sync: false
+      - key: ELEVENLABS_API_KEY
+        sync: false
+      - key: KOKORO_VOICE
+        value: af_heart
+      - key: KOKORO_LANG_CODE
+        value: a
+      - key: KOKORO_SPEED
+        value: "1.0"
+
+  - type: static
+    name: brainbrew-web
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_BASE_URL
+        value: https://api.brain-brew.us/api

@@ -180,7 +180,7 @@ export function Chat({ onClose: onCloseProp }: ChatProps) {
                       <p className="text-white/50 text-sm">
                         {specializedAgentLabel
                           ? `Specialized agent ready for ${specializedAgentLabel}`
-                          : "Ask Syllara anything about your courses"}
+                          : "Ask BrainBrew anything about your courses"}
                       </p>
                       {!specializedAgentLabel && (
                         <div className="flex flex-wrap gap-2 mt-4 justify-center">
@@ -298,7 +298,7 @@ export function Chat({ onClose: onCloseProp }: ChatProps) {
                         : <Volume2 size={12} className="text-[#FFCDD6] animate-pulse" />
                       }
                       <span className="text-xs text-white/60 font-mono">
-                        {isSpeakLoading ? "Generating speech..." : "Syllara is speaking..."}
+                        {isSpeakLoading ? "Generating speech..." : "BrainBrew is speaking..."}
                       </span>
                     </div>
                   </div>
@@ -316,7 +316,7 @@ export function Chat({ onClose: onCloseProp }: ChatProps) {
                             ? "bg-orange-500/80 hover:bg-orange-500 text-white"
                             : "bg-white/[0.06] hover:bg-white/[0.1] text-white/50 hover:text-white/80"
                         } disabled:opacity-30`}
-                        title={isListening ? "Stop listening" : "Speak to Syllara"}
+                        title={isListening ? "Stop listening" : "Speak to BrainBrew"}
                       >
                         {isListening ? <MicOff size={18} /> : <Mic size={18} />}
                       </button>
@@ -325,7 +325,7 @@ export function Chat({ onClose: onCloseProp }: ChatProps) {
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
                       onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()}
-                      placeholder={isListening ? "Listening..." : specializedAgentLabel ? `Ask about ${specializedAgentLabel}...` : "Ask Syllara..."}
+                      placeholder={isListening ? "Listening..." : specializedAgentLabel ? `Ask about ${specializedAgentLabel}...` : "Ask BrainBrew..."}
                       autoFocus
                       disabled={isListening}
                       className="flex-1 bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-[#CC0033]/50 transition-colors disabled:opacity-40"

@@ -451,7 +451,7 @@ export function CommandCenter() {
               }}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()}
-              placeholder={isVoiceMode ? "Listening to your voice..." : specializedAgentLabel ? `Ask about ${specializedAgentLabel}...` : "Ask Syllara anything..."}
+              placeholder={isVoiceMode ? "Listening to your voice..." : specializedAgentLabel ? `Ask about ${specializedAgentLabel}...` : "Ask BrainBrew anything..."}
               className="flex-1 bg-transparent text-sm text-white placeholder-white/20 outline-none min-w-0"
             />
             <button
@@ -465,7 +465,7 @@ export function CommandCenter() {
             <div className="flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-[#CC0033] animate-pulse" />
               <span className="text-[9px] font-mono tracking-[0.15em] text-white/20 uppercase whitespace-nowrap">
-                Syllara Online
+                BrainBrew Online
               </span>
             </div>
           </div>

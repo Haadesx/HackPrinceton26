@@ -1,7 +1,9 @@
-"""Syllara API application."""
+"""BrainBrew API application."""
 
 from contextlib import asynccontextmanager
 import logging
+
+import os
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -42,14 +44,23 @@ async def lifespan(app: FastAPI):
     await university_sources_service.close()
 
 
-app = FastAPI(title="Syllara API", lifespan=lifespan)
+app = FastAPI(title="BrainBrew API", lifespan=lifespan)
+
+
+def _cors_origins() -> list[str]:
+    raw = os.getenv("CORS_ORIGINS", "").strip()
+    if raw:
+        return [origin.strip() for origin in raw.split(",") if origin.strip()]
+    return [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "https://brain-brew.us",
+        "https://www.brain-brew.us",
+    ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-    ],
+    allow_origins=_cors_origins(),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
+import { BASE_URL } from "@/lib/api";
 
-const API_BASE = "http://localhost:8000";
+const API_BASE = BASE_URL.replace(/\/api$/, "");
 
 export function useVoice() {
   const [isPlaying, setIsPlaying] = useState(false);

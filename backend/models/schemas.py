@@ -137,4 +137,4 @@ class CourseRecommendationRequest(BaseModel):
 
 class VoiceRequest(BaseModel):
     text: str = Field(..., description="Text to convert to speech")
-    voice_id: Optional[str] = Field("JBFqnCBsd6RMkjVDRZzb", description="ElevenLabs voice ID")
+    voice_id: Optional[str] = Field("af_heart", description="Optional Kokoro voice ID")

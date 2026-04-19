@@ -4,7 +4,7 @@ from fastapi import APIRouter, HTTPException, UploadFile, File
 from fastapi.responses import Response
 from pydantic import BaseModel
 
-from services.elevenlabs_tts import text_to_speech, get_client
+from services.elevenlabs_tts import text_to_speech, get_stt_client
 
 router = APIRouter()
 
@@ -18,13 +18,13 @@ class VoiceRequest(BaseModel):
 async def tts_endpoint(req: VoiceRequest):
     try:
         audio_bytes = text_to_speech(req.text, req.voice_id)
-        return Response(content=audio_bytes, media_type="audio/mpeg")
+        return Response(content=audio_bytes, media_type="audio/wav")
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
     except RuntimeError as e:
         raise HTTPException(status_code=500, detail=str(e))
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"ElevenLabs error: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Kokoro TTS error: {str(e)}")
 
 
 @router.post("/transcribe")
@@ -36,7 +36,7 @@ async def stt_endpoint(file: UploadFile = File(...)):
         if len(audio_bytes) < 100:
             raise HTTPException(status_code=400, detail="Audio too short")
 
-        client = get_client()
+        client = get_stt_client()
         audio_file = BytesIO(audio_bytes)
         audio_file.name = file.filename or "recording.webm"
         transcription = client.speech_to_text.convert(

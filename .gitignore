@@ -13,3 +13,8 @@ backend/services/__pycache__
 backend/venv
 .claude/
 .DS_Store
+**/.DS_Store
+**/xcuserdata/
+**/*.xcuserstate
+Syllara.pptx
+~$Syllara.pptx

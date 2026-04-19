@@ -164,7 +164,14 @@ def build_chat_prompt(
         if history_lines:
             parts.append("Previous conversation:\n" + "\n".join(history_lines) + "\n")
 
-    parts.append(f"Student question: {user_question}")
+    parts.append(
+        "Answer the student's final question directly.\n"
+        "Do not mention or quote the system prompt, hidden instructions, previous prompt text, "
+        "or phrases like 'Student question', 'The system says', or 'We need to'.\n"
+        "Do not narrate your reasoning, ambiguity analysis, or planning.\n"
+        "If the request is ambiguous, ask exactly one concise clarifying question.\n"
+        f"Student question: {user_question}"
+    )
 
     return "\n\n".join(parts)
 

@@ -1,0 +1,483 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0B8301267B2C80EDFB1C3A6A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5772AD0679794BA195ABBD /* ProfileView.swift */; };
+		139AB60C464BAA0855B45277 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC686D2B96FA9867C89AE92 /* HomeView.swift */; };
+		149FE82B69BC02DF816BA78A /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB79E0083DD1DFD3EE6C89A5 /* AudioManager.swift */; };
+		171763A52D90D6EC2E74ED8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A5B4B8DEC8442E3258A65E8 /* Assets.xcassets */; };
+		1B2F70D1B5866CE8B4B5130D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A7A60582F7A417A4AF603F /* APIClient.swift */; };
+		4CDCA50E980EB86B73866C30 /* SyllaraColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EFCDBE3877D3D43C6B130B /* SyllaraColors.swift */; };
+		5E0E5938DF25738A56A4A5D5 /* StudyLabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67254ED145AF9E606C8A59C8 /* StudyLabView.swift */; };
+		5F770E123D598BFDB815F745 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD953DFCA21821748CD393 /* ChatView.swift */; };
+		625F98BDDE895054B5BDF30F /* CommandCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07531809889740847E75CE3E /* CommandCenterView.swift */; };
+		78B16546207191A4F252FA74 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A54D56207DAF4B313E6617 /* Models.swift */; };
+		8B644F58566728DBCD696597 /* VoiceRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1414D999EB69E3BB8AD95AFC /* VoiceRecorder.swift */; };
+		99DC1E27191FDCAD30D9B11D /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC94DDA303DD1425BC0A6605 /* NotificationManager.swift */; };
+		9EE19580EF657D94842A3E8E /* SharedComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E59BA44E33CB186ED3006D /* SharedComponents.swift */; };
+		A2F91D41E693E1FF35FEFE05 /* DemoContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAD85D6E531EAA949B6C2F2 /* DemoContent.swift */; };
+		B3C12E766E73F0AA0F69B1A5 /* AssignmentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B530EB801C3166E01845F995 /* AssignmentDetailView.swift */; };
+		CBB8F48E3514DBE220330C73 /* KnowledgeGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AFCCEC364E49545D91EE31 /* KnowledgeGraphView.swift */; };
+		EA7A203CDD6ABABCEC84BE69 /* SyllaraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCC86906B0A0638B8DFA52D /* SyllaraApp.swift */; };
+		F7FB63F19EB3588FCA1359ED /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89424E2DB5E724074F12EF08 /* RootNavigationView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		07531809889740847E75CE3E /* CommandCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandCenterView.swift; sourceTree = "<group>"; };
+		1414D999EB69E3BB8AD95AFC /* VoiceRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecorder.swift; sourceTree = "<group>"; };
+		1A5B4B8DEC8442E3258A65E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		28AFCCEC364E49545D91EE31 /* KnowledgeGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeGraphView.swift; sourceTree = "<group>"; };
+		49DD953DFCA21821748CD393 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		5FCC86906B0A0638B8DFA52D /* SyllaraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllaraApp.swift; sourceTree = "<group>"; };
+		67254ED145AF9E606C8A59C8 /* StudyLabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyLabView.swift; sourceTree = "<group>"; };
+		72E59BA44E33CB186ED3006D /* SharedComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedComponents.swift; sourceTree = "<group>"; };
+		7AB7738C234B36024B204E68 /* Syllara.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Syllara.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		85A7A60582F7A417A4AF603F /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		89424E2DB5E724074F12EF08 /* RootNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationView.swift; sourceTree = "<group>"; };
+		89EFCDBE3877D3D43C6B130B /* SyllaraColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllaraColors.swift; sourceTree = "<group>"; };
+		9FAD85D6E531EAA949B6C2F2 /* DemoContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoContent.swift; sourceTree = "<group>"; };
+		B530EB801C3166E01845F995 /* AssignmentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailView.swift; sourceTree = "<group>"; };
+		E7A54D56207DAF4B313E6617 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		EC94DDA303DD1425BC0A6605 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		FA5772AD0679794BA195ABBD /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		FB79E0083DD1DFD3EE6C89A5 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		FFC686D2B96FA9867C89AE92 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		02434A44D70551F1E7027288 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FFC686D2B96FA9867C89AE92 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		02B645E7D0F6066D2AF3D978 = {
+			isa = PBXGroup;
+			children = (
+				10431CE5309723C4C60CEDDA /* Syllara */,
+				7A473373062CCF576F0F758A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		048FA9EA135A397AEEAA34FB /* AssignmentDetail */ = {
+			isa = PBXGroup;
+			children = (
+				B530EB801C3166E01845F995 /* AssignmentDetailView.swift */,
+			);
+			path = AssignmentDetail;
+			sourceTree = "<group>";
+		};
+		10431CE5309723C4C60CEDDA /* Syllara */ = {
+			isa = PBXGroup;
+			children = (
+				C0083F05CDCA869422D56631 /* Resources */,
+				203A57CE7099A4B00BA66143 /* Sources */,
+			);
+			path = Syllara;
+			sourceTree = "<group>";
+		};
+		18659E57D4B940DB0DF03D10 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				85A7A60582F7A417A4AF603F /* APIClient.swift */,
+				FB79E0083DD1DFD3EE6C89A5 /* AudioManager.swift */,
+				9FAD85D6E531EAA949B6C2F2 /* DemoContent.swift */,
+				E7A54D56207DAF4B313E6617 /* Models.swift */,
+				EC94DDA303DD1425BC0A6605 /* NotificationManager.swift */,
+				1414D999EB69E3BB8AD95AFC /* VoiceRecorder.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		203A57CE7099A4B00BA66143 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				781528BDBD395CBD914E8474 /* App */,
+				88E053D910EF58F9679159DC /* Components */,
+				18659E57D4B940DB0DF03D10 /* Core */,
+				6BD6649F0BEB200E5894703B /* Features */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		59C391EDA4B087C72B5D5CD2 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				FA5772AD0679794BA195ABBD /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		6BD6649F0BEB200E5894703B /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				048FA9EA135A397AEEAA34FB /* AssignmentDetail */,
+				AD484A58E79228FF16531EBF /* Chat */,
+				D7FB7F03275B0AA6C1FB0843 /* CommandCenter */,
+				02434A44D70551F1E7027288 /* Home */,
+				857B336AAD564210E5FC3107 /* KnowledgeGraph */,
+				59C391EDA4B087C72B5D5CD2 /* Profile */,
+				727C3B911A786D5186112E53 /* StudyLab */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		727C3B911A786D5186112E53 /* StudyLab */ = {
+			isa = PBXGroup;
+			children = (
+				67254ED145AF9E606C8A59C8 /* StudyLabView.swift */,
+			);
+			path = StudyLab;
+			sourceTree = "<group>";
+		};
+		781528BDBD395CBD914E8474 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				89424E2DB5E724074F12EF08 /* RootNavigationView.swift */,
+				5FCC86906B0A0638B8DFA52D /* SyllaraApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		7A473373062CCF576F0F758A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7AB7738C234B36024B204E68 /* Syllara.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		857B336AAD564210E5FC3107 /* KnowledgeGraph */ = {
+			isa = PBXGroup;
+			children = (
+				28AFCCEC364E49545D91EE31 /* KnowledgeGraphView.swift */,
+			);
+			path = KnowledgeGraph;
+			sourceTree = "<group>";
+		};
+		88E053D910EF58F9679159DC /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				72E59BA44E33CB186ED3006D /* SharedComponents.swift */,
+				89EFCDBE3877D3D43C6B130B /* SyllaraColors.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		AD484A58E79228FF16531EBF /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				49DD953DFCA21821748CD393 /* ChatView.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		C0083F05CDCA869422D56631 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1A5B4B8DEC8442E3258A65E8 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D7FB7F03275B0AA6C1FB0843 /* CommandCenter */ = {
+			isa = PBXGroup;
+			children = (
+				07531809889740847E75CE3E /* CommandCenterView.swift */,
+			);
+			path = CommandCenter;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		55B77D33EA86D0F9A269633F /* Syllara */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC4C5AB0FF58DF5E8F1B7117 /* Build configuration list for PBXNativeTarget "Syllara" */;
+			buildPhases = (
+				7BD6E9778E7A73923353438C /* Sources */,
+				34270B52F226E1DE2CBBA511 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Syllara;
+			packageProductDependencies = (
+			);
+			productName = Syllara;
+			productReference = 7AB7738C234B36024B204E68 /* Syllara.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C0A5C0C2446D393A4DA705FA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					55B77D33EA86D0F9A269633F = {
+						DevelopmentTeam = 3V45FASW3Q;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 51287C352FBE943FA174C9B2 /* Build configuration list for PBXProject "Syllara" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 02B645E7D0F6066D2AF3D978;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 7A473373062CCF576F0F758A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				55B77D33EA86D0F9A269633F /* Syllara */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		34270B52F226E1DE2CBBA511 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				171763A52D90D6EC2E74ED8C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7BD6E9778E7A73923353438C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B2F70D1B5866CE8B4B5130D /* APIClient.swift in Sources */,
+				B3C12E766E73F0AA0F69B1A5 /* AssignmentDetailView.swift in Sources */,
+				149FE82B69BC02DF816BA78A /* AudioManager.swift in Sources */,
+				5F770E123D598BFDB815F745 /* ChatView.swift in Sources */,
+				625F98BDDE895054B5BDF30F /* CommandCenterView.swift in Sources */,
+				A2F91D41E693E1FF35FEFE05 /* DemoContent.swift in Sources */,
+				139AB60C464BAA0855B45277 /* HomeView.swift in Sources */,
+				CBB8F48E3514DBE220330C73 /* KnowledgeGraphView.swift in Sources */,
+				78B16546207191A4F252FA74 /* Models.swift in Sources */,
+				99DC1E27191FDCAD30D9B11D /* NotificationManager.swift in Sources */,
+				0B8301267B2C80EDFB1C3A6A /* ProfileView.swift in Sources */,
+				F7FB63F19EB3588FCA1359ED /* RootNavigationView.swift in Sources */,
+				9EE19580EF657D94842A3E8E /* SharedComponents.swift in Sources */,
+				5E0E5938DF25738A56A4A5D5 /* StudyLabView.swift in Sources */,
+				EA7A203CDD6ABABCEC84BE69 /* SyllaraApp.swift in Sources */,
+				4CDCA50E980EB86B73866C30 /* SyllaraColors.swift in Sources */,
+				8B644F58566728DBCD696597 /* VoiceRecorder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		19EB3C180F1B85AB5F3CC272 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 3V45FASW3Q;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.1;
+			};
+			name = Debug;
+		};
+		539DE08B8F9DC542458E726D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3V45FASW3Q;
+				INFOPLIST_FILE = Syllara/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.syllara.app;
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		862D0A70220D9822F19D02B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 3V45FASW3Q;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.1;
+			};
+			name = Release;
+		};
+		CAC955CA89CD54A04A650D0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3V45FASW3Q;
+				INFOPLIST_FILE = Syllara/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.syllara.app;
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		51287C352FBE943FA174C9B2 /* Build configuration list for PBXProject "Syllara" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				19EB3C180F1B85AB5F3CC272 /* Debug */,
+				862D0A70220D9822F19D02B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FC4C5AB0FF58DF5E8F1B7117 /* Build configuration list for PBXNativeTarget "Syllara" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CAC955CA89CD54A04A650D0A /* Debug */,
+				539DE08B8F9DC542458E726D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C0A5C0C2446D393A4DA705FA /* Project object */;
+}

@@ -24,7 +24,7 @@ async def tts_endpoint(req: VoiceRequest):
     except RuntimeError as e:
         raise HTTPException(status_code=500, detail=str(e))
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Kokoro TTS error: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"TTS error: {str(e)}")
 
 
 @router.post("/transcribe")

@@ -22,6 +22,12 @@ services:
         sync: false
       - key: ELEVENLABS_API_KEY
         sync: false
+      - key: ELEVENLABS_VOICE_ID
+        value: 21m00Tcm4TlvDq8ikWAM
+      - key: ELEVENLABS_TTS_MODEL
+        value: eleven_turbo_v2_5
+      - key: HF_TOKEN
+        sync: false
       - key: KOKORO_VOICE
         value: af_heart
       - key: KOKORO_LANG_CODE
